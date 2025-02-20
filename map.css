@@ -1,16 +1,20 @@
 html, body {
-    margin: 0;
-    padding: 5;
     height: 100%;
     width: 100%;
+  }
+  
+  main {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center;     /* Center vertically */
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px); /* Adjust based on header height */
+    padding: 1em;
   }
-     
+  
   #map {
-    width: 100%;    /* Adjust width to your desired size */
-    height: 100%;   /* Adjust height to your desired size */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
-    border-radius: 8px; /* Optional: rounded corners */
+    width: 90%;
+    height: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
   }
+  
