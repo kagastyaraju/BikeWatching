@@ -14,19 +14,20 @@
 }
 
 #map svg circle {
-  pointer-events: auto; /* Enable pointer events on circles for tooltips */
+  pointer-events: auto; /* Enable pointer events on circles (for tooltips, etc.) */
   
-  /* Base custom properties for our two colors */
+  /* Define base color custom properties */
   --color-departures: steelblue;
   --color-arrivals: darkorange;
   
-  /* Use color-mix() to compute a fill based on the custom property --departure-ratio.
-     If unsupported, fallback to steelblue. */
+  /* Use CSS color-mix to mix the two colors based on --departure-ratio.
+     If color-mix() isn’t supported, the fallback steelblue will be used. */
   --color: color-mix(
     in oklch,
     var(--color-departures) calc(100% * var(--departure-ratio)),
     var(--color-arrivals)
   );
   
+  /* If the computed --color is invalid, fallback to steelblue */
   fill: var(--color, steelblue);
 }

@@ -48,7 +48,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 80px); /* Adjust based on header height */
+  height: calc(100vh - 80px);
   padding: 1em;
 }
 
@@ -58,36 +58,30 @@ main {
   height: 100%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   border-radius: 8px;
-  margin-bottom: 1em; /* Space between map and legend */
+  margin-bottom: 1em;
 }
 
-/* Legend container styling */
 .legend {
-  display: flex;           /* Lay out legend swatches horizontally */
-  gap: 1px;                /* Small gap between swatches */
-  width: 90%;              /* Match map width */
-  margin: 1em 0;           /* Vertical spacing */
+  display: flex;
+  gap: 1px;
+  margin-block: 1em;
 }
 
-/* Legend swatch styling */
 .legend > div {
-  flex: 1;                 /* Each swatch takes equal space */
-  padding: 0.5em 1em;       /* Balanced horizontal padding */
+  flex: 1;
+  padding: 0.5em 1em;
+  text-align: center;
   color: white;
   font-weight: bold;
-  text-align: center;
-  
-  /* Define the same base color custom properties */
+  /* Base color properties */
   --color-departures: steelblue;
   --color-arrivals: darkorange;
-  
-  /* Use color-mix() with the inline --departure-ratio set in the HTML.
-     If unsupported, fallback to steelblue. */
+  /* Blend the colors based on the inline --departure-ratio */
   --color: color-mix(
     in oklch,
     var(--color-departures) calc(100% * var(--departure-ratio)),
     var(--color-arrivals)
   );
-  
   background: var(--color, steelblue);
 }
+

@@ -1,4 +1,3 @@
-// Set your Mapbox access token
 mapboxgl.accessToken =
   'pk.eyJ1Ijoia2F1c2hpazEyMjEiLCJhIjoiY203ZDJkanVhMHk2NjJtb3Nka2loZm52eiJ9.p0aHmebQSUPXf11sdCuTew';
 
@@ -11,7 +10,6 @@ const map = new mapboxgl.Map({
   maxZoom: 18,
 });
 
-// Add navigation controls
 map.addControl(new mapboxgl.NavigationControl());
 
 let stations = [];
@@ -59,7 +57,6 @@ map.on('load', () => {
     .then((jsonData) => {
       stations = jsonData.data.stations;
 
-      // CREATE circles (no direct fill color; let CSS handle fill)
       const circles = svg.selectAll('circle')
         .data(stations)
         .enter()
@@ -91,7 +88,6 @@ map.on('load', () => {
             arrivalsByMinute[endMin].push(trip);
           });
 
-          // Compute global max
           const allDepartures = departuresByMinute.flat();
           const allArrivals = arrivalsByMinute.flat();
           const globalDepartures = d3.rollup(
@@ -116,10 +112,8 @@ map.on('load', () => {
           globalMaxTraffic =
             d3.max(unfilteredStations, (d) => d.totalTraffic) || 0;
 
-          // RENDER
           updateVisualization();
 
-          // --- Slider reactivity ---
           const timeSlider = document.getElementById('time-slider');
           const selectedTime = document.getElementById('selected-time');
           const anyTimeLabel = document.getElementById('any-time');
@@ -148,9 +142,7 @@ map.on('load', () => {
           console.error('Error loading traffic data:', error);
         });
 
-      // --- UPDATE VISUALIZATION (includes circle color logic) ---
       function updateVisualization() {
-        // If timeFilter != -1, filter trips for a 2-hour window
         const filteredDepartureTrips =
           timeFilter === -1
             ? departuresByMinute.flat()
@@ -179,16 +171,14 @@ map.on('load', () => {
           return station;
         });
 
-        // Radius scale (same as before)
         const radiusScale = d3
           .scaleSqrt()
           .domain([0, globalMaxTraffic])
           .range([5, 25]);
 
-        // NEW: discrete color ratio scale
         const stationFlow = d3.scaleQuantize()
-          .domain([0, 1])      // ratio from 0 to 1
-          .range([0, 0.5, 1]); // 3 discrete bins
+          .domain([0, 1])
+          .range([0, 0.5, 1]);
 
         circles
           .data(filteredStations)

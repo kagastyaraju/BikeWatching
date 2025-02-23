@@ -4,12 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Bikewatching</title>
-  <!-- Mapbox GL JS CSS -->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-  <!-- Map-specific styles -->
   <link rel="stylesheet" href="map.css" />
-  <!-- Global styles (header, slider, legend, etc.) -->
-  <link rel="stylesheet" href="styl.css" />
+  <link rel="stylesheet" href="global.css" />
 </head>
 <body>
   <header>
@@ -28,15 +25,12 @@
       <svg></svg>
     </div>
 
-    <!-- Legend for discrete color scale -->
     <div class="legend">
       <div style="--departure-ratio: 1">More departures</div>
       <div style="--departure-ratio: 0.5">Balanced</div>
       <div style="--departure-ratio: 0">More arrivals</div>
     </div>
-    
   </main>
-
   <!-- Load D3.js first -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <!-- Then Mapbox GL JS -->
